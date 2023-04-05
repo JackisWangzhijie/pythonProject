@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Solar System</title>
+	<style>
+		canvas {
+			border: 1px solid black;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width="500" height="500"></canvas>
+
+	<script>
+		var canvas = document.getElementById("canvas");
+		var ctx = canvas.getContext("2d");
+		var centerX = canvas.width / 2;
+		var centerY = canvas.height / 2;
+		var radiusSun = 50;
+		var radiusEarth = 20;
+		var radiusMoon = 5;
+		var radiusStar1 = 2;
+		var radiusStar2 = 3;
+
+		function draw() {
+			// Clear canvas
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+			// Draw Sun
+			ctx.fillStyle = "orange";
+			ctx.beginPath();
+			ctx.arc(centerX, centerY, radiusSun, 0, 2*Math.PI);
+			ctx.fill();
+
+			// Draw Earth
+			var angleEarth = new Date().getTime() / 1000;
+			var earthX = centerX + Math.cos(angleEarth) * 150;
+			var earthY = centerY + Math.sin(angleEarth) * 150;
+			ctx.fillStyle = "blue";
+			ctx.beginPath();
+			ctx.arc(earthX, earthY, radiusEarth, 0, 2*Math.PI);
+			ctx.fill();
+
+			// Draw Moon
+			var angleMoon = new Date().getTime() / 500;
+			var moonX = earthX + Math.cos(angleMoon) * 50;
+			var moonY = earthY + Math.sin(angleMoon) * 50;
+			ctx.fillStyle = "gray";
+			ctx.beginPath();
+			ctx.arc(moonX, moonY, radiusMoon, 0, 2*Math.PI);
+			ctx.fill();
+
+			// Draw star 1
+			var angleStar1 = new Date().getTime() / 1000;
+			var star1X = centerX + Math.cos(angleStar1) * 200;
+			var star1Y = centerY + Math.sin(angleStar1) * 200;
+			ctx.fillStyle = "white";
+			ctx.beginPath();
+			ctx.arc(star1X, star1Y, radiusStar1, 0, 2*Math.PI);
+			ctx.fill();
+
+			// Draw star 2
+			var angleStar2 = new Date().getTime() / 2000;
+			var star2X = centerX + Math.cos(angleStar2) * 250;
+			var star2Y = centerY + Math.sin(angleStar2) * 250;
+			ctx.fillStyle = "yellow";
+			ctx.beginPath();
+			ctx.arc(star2X, star2Y, radiusStar2, 0, 2*Math.PI);
+			ctx.fill();
+
+			// Request animation frame
+			requestAnimationFrame(draw);
+		}
+
+
+		// Start animation
+		draw();
+
+	</<script>
+
+
+</body>
+</html>
